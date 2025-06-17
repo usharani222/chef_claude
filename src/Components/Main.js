@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import IngredientsList from "../Components/IngredientsList"
 import ClaudeRecipe from "../Components/ClaudeRecipe"
 import { getRecipeFromMistral } from "../ai";
