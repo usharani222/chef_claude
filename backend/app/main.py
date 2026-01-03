@@ -7,7 +7,10 @@ init_db()
 # ✅ CORS MUST BE ADDED IMMEDIATELY AFTER app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React
+    allow_origins=[
+        "http://localhost:3000",
+        "https://chefclaude-lilac.vercel.app/"
+    ],
     allow_credentials=True,
     allow_methods=["*"],                      # POST, GET, OPTIONS
     allow_headers=["*"],                      # Authorization, Content-Type
