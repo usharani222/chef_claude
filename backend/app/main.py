@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.db.init_db import init_db
 
 app = FastAPI()
-
+init_db()
 # ✅ CORS MUST BE ADDED IMMEDIATELY AFTER app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
