@@ -4,17 +4,19 @@ from app.db.init_db import init_db
 
 app = FastAPI()
 
+# ✅ CORS FIRST
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://chefclaude-lilac.vercel.app"
-    ],
-    allow_credentials=False,   
-    allow_methods=["*"],   
+    allow_origins=["https://chefclaude-lilac.vercel.app"],
+    allow_credentials=False,
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
-init_db()
+# ✅ DB init AFTER app is ready
+@app.on_event("startup")
+def on_startup():
+    init_db()
 
 from app.routes import auth, recipes, users
 
