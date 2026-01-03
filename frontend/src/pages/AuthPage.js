@@ -29,16 +29,36 @@ export default function AuthPage() {
         }),
       });
     } else {
-      // ✅ REGISTER (JSON is fine)
+       // ✅ REGISTER VALIDATION 
+      const username = form.username.trim();
+      const email = form.email.trim();
+      const password = form.password;
+
+      if (username.length < 3) {
+        alert("Username must be at least 3 characters");
+        return;
+      }
+
+      if (password.length < 8) {
+        alert("Password must be at least 8 characters");
+        return;
+      }
+
+      if (password.length > 64) {
+        alert("Password must be less than 64 characters");
+        return;
+      }
+
+      // ✅ REGISTER REQUEST
       response = await fetch(API + endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: form.username,
-          email: form.email,
-          password: form.password,
+          username,
+          email,
+          password,
         }),
       });
     }
