@@ -3,20 +3,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.db.init_db import init_db
 
 app = FastAPI()
-init_db()
-# ✅ CORS MUST BE ADDED IMMEDIATELY AFTER app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "https://chefclaude-lilac.vercel.app/"
+        "https://chefclaude-lilac.vercel.app"
     ],
-    allow_credentials=True,
-    allow_methods=["*"],                      # POST, GET, OPTIONS
-    allow_headers=["*"],                      # Authorization, Content-Type
+    allow_credentials=False,   
+    allow_methods=["*"],   
+    allow_headers=["*"],
 )
 
-# import routers AFTER middleware
+init_db()
+
 from app.routes import auth, recipes, users
 
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
